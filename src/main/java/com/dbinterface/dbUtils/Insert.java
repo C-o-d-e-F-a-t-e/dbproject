@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Insert {
-    public static boolean insert(String table, Object... values) throws SQLException {
+    public static boolean insert(String table, Object... values){
         Connection connection = null;
         ResultSet rs = null;
         
@@ -95,12 +95,12 @@ public class Insert {
                 return rowsAffected > 0;
             }catch(SQLException e){
                 System.err.println("statement execution failed" + e.getMessage());
-                throw e;
+                return false;
             }
             
         } catch (SQLException | IllegalArgumentException e) {
             System.err.println("Insert failed: " + e.getMessage());
-            throw e;
+            return false;
         } finally {
             try {
                 if (rs != null) rs.close();

@@ -1,6 +1,8 @@
 package com.dbinterface.entities;
 
 import java.sql.Timestamp;
+import java.util.List;
+import com.dbinterface.dbUtils.*;
 
 public class Employee {
     private int EmployeeID;
@@ -64,5 +66,11 @@ public class Employee {
                 ", role='" + role + '\'' +
                 ", dateOfEmployment=" + dateOfEmployment +
                 '}';
+    }
+    public static Boolean Add(Employee employee){
+        return Insert.insert("Employee", employee.getFirstName(),employee.getLastName(),employee.getAge(),employee.getPhone(), employee.getRole());
+    }
+    public static Boolean Remove(int id){
+        return Delete.delete("Employee", List.of("EmployeeId = " + id));
     }
 }

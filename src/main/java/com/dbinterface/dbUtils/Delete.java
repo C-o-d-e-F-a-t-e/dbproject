@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class Delete {
-    public static boolean delete(String table, List<String> conditions) throws SQLException {
+    public static boolean delete(String table, List<String> conditions) {
         Connection connection = null;
         
         try {
@@ -42,12 +42,12 @@ public class Delete {
                 return rowsAffected > 0;
             }catch(SQLException e){
                 System.err.println("statement execution failed" + e.getMessage());
-                throw e;
+                return false;
             }
 
         }catch(SQLException e){
             System.err.println("Select Failed :" + e.getMessage());
-            throw e;
+            return false;
         }
     }
 }
