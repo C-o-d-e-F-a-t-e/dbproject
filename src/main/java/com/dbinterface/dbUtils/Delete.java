@@ -1,4 +1,4 @@
-package com.dbinterface.DBUtils;
+package com.dbinterface.dbUtils;
 
 import com.dbinterface.database.Database;
 

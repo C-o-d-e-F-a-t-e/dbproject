@@ -1,4 +1,4 @@
-package com.dbinterface.DBUtils;
+package com.dbinterface.dbUtils;
 
 import com.dbinterface.database.Database;
 import java.sql.Connection;
@@ -25,10 +25,15 @@ public class Insert {
             
             while (rs.next()) {
                 String columnName = rs.getString("COLUMN_NAME");
+                String columnType = rs.getString("TYPE_NAME");
                 String isAutoIncrement = rs.getString("IS_AUTOINCREMENT");
                 
                 // Skip auto-incremented column
                 if ("YES".equalsIgnoreCase(isAutoIncrement)) {
+                    continue;
+                }
+                // skip datetime columns since they already get a value by default
+                if(columnType.equalsIgnoreCase("DATETIME")){
                     continue;
                 }
                 
